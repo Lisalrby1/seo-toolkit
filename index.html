@@ -1,506 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>SEO Toolkit - Free SEO Tools</title>
-
-    <meta
-        name="description"
-        content="Free SEO toolkit with keyword density, meta title, meta description, slug, word count and character count tools."
-    >
-
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-<header class="header">
-    <div class="container">
-
-        <div class="logo">
-            
-            <span>SEO</span> Toolkit
-        </div>
-
-        <p class="tagline">
-            Free SEO tools for marketers, writers and website owners
-        </p>
-
-    </div>
-</header>
-
-
-<main class="container">
-
-    <!-- HERO -->
-
-    <section class="hero">
-
-        <h1>Free SEO Toolkit</h1>
-
-        <p>
-            Analyze your content and create SEO-ready elements
-            with simple, fast tools.
-        </p>
-
-    </section>
-
-
-    <!-- TOOL NAVIGATION -->
-
-    <div class="tool-navigation">
-
-        <button class="nav-button active" onclick="showTool('wordTool', this)">
-            Word Counter
-        </button>
-
-        <button class="nav-button" onclick="showTool('keywordTool', this)">
-            Keyword Density
-        </button>
-
-        <button class="nav-button" onclick="showTool('titleTool', this)">
-            Meta Title
-        </button>
-
-        <button class="nav-button" onclick="showTool('descriptionTool', this)">
-            Meta Description
-        </button>
-
-        <button class="nav-button" onclick="showTool('slugTool', this)">
-            Slug Generator
-        </button>
-
-    </div>
-
-
-    <!-- ================================= -->
-    <!-- WORD COUNTER -->
-    <!-- ================================= -->
-
-    <section id="wordTool" class="tool-section active-tool">
-
-        <div class="tool-card">
-
-            <h2>Word & Character Counter</h2>
-
-            <p class="tool-description">
-                Count words, characters, sentences and paragraphs in your content.
-            </p>
-
-            <textarea
-                id="wordText"
-                placeholder="Paste or type your content here..."
-                oninput="updateWordCounter()"
-            ></textarea>
-
-
-            <div class="statistics">
-
-                <div class="stat-box">
-                    <span id="wordCount">0</span>
-                    <small>Words</small>
-                </div>
-
-                <div class="stat-box">
-                    <span id="characterCount">0</span>
-                    <small>Characters</small>
-                </div>
-
-                <div class="stat-box">
-                    <span id="characterNoSpace">0</span>
-                    <small>Without Spaces</small>
-                </div>
-
-                <div class="stat-box">
-                    <span id="sentenceCount">0</span>
-                    <small>Sentences</small>
-                </div>
-
-                <div class="stat-box">
-                    <span id="paragraphCount">0</span>
-                    <small>Paragraphs</small>
-                </div>
-
-            </div>
-
-            <button class="clear-button" onclick="clearWordCounter()">
-                Clear
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- ================================= -->
-    <!-- KEYWORD DENSITY -->
-    <!-- ================================= -->
-
-    <section id="keywordTool" class="tool-section">
-
-        <div class="tool-card">
-
-            <h2>Keyword Density Checker</h2>
-
-            <p class="tool-description">
-                Check how frequently a keyword appears in your content.
-            </p>
-
-            <label for="keywordText">
-                Your Content
-            </label>
-
-            <textarea
-                id="keywordText"
-                placeholder="Paste your article or content here..."
-            ></textarea>
-
-
-            <label for="targetKeyword">
-                Target Keyword
-            </label>
-
-            <input
-                type="text"
-                id="targetKeyword"
-                placeholder="Example: AI chatbot development"
-            >
-
-
-            <button class="primary-button" onclick="checkKeywordDensity()">
-                Check Keyword Density
-            </button>
-
-
-            <div id="keywordResult" class="result-box">
-
-                <div class="result-item">
-                    <strong id="keywordResultText">-</strong>
-                    <span>Keyword</span>
-                </div>
-
-                <div class="result-item">
-                    <strong id="keywordOccurrences">0</strong>
-                    <span>Occurrences</span>
-                </div>
-
-                <div class="result-item">
-                    <strong id="keywordDensity">0%</strong>
-                    <span>Density</span>
-                </div>
-
-                <div class="density-message" id="densityMessage">
-                    Enter your content and keyword.
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ================================= -->
-    <!-- META TITLE -->
-    <!-- ================================= -->
-
-    <section id="titleTool" class="tool-section">
-
-        <div class="tool-card">
-
-            <h2>Meta Title Checker</h2>
-
-            <p class="tool-description">
-                Check your SEO title length and preview how it may appear in search results.
-            </p>
-
-            <label for="metaTitle">
-                Meta Title
-            </label>
-
-            <input
-                type="text"
-                id="metaTitle"
-                maxlength="100"
-                placeholder="Enter your SEO title..."
-                oninput="checkMetaTitle()"
-            >
-
-
-            <div class="character-display">
-
-                <strong id="titleCharacters">0</strong>
-                <span>characters</span>
-
-            </div>
-
-
-            <div id="titleStatus" class="status neutral">
-                Enter a title to check it.
-            </div>
-
-
-            <div class="google-preview">
-
-                <p class="preview-label">
-                    Search Preview
-                </p>
-
-                <div class="google-result">
-
-                    <div id="previewTitle" class="preview-title">
-                        Your Meta Title
-                    </div>
-
-                    <div class="preview-url">
-                        https://example.com/
-                    </div>
-
-                    <div class="preview-description">
-                        Your search result preview will appear here.
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ================================= -->
-    <!-- META DESCRIPTION -->
-    <!-- ================================= -->
-
-    <section id="descriptionTool" class="tool-section">
-
-        <div class="tool-card">
-
-            <h2>Meta Description Checker</h2>
-
-            <p class="tool-description">
-                Check the length of your meta description and preview it.
-            </p>
-
-            <label for="metaDescription">
-                Meta Description
-            </label>
-
-            <textarea
-                id="metaDescription"
-                maxlength="300"
-                placeholder="Enter your meta description..."
-                oninput="checkMetaDescription()"
-            ></textarea>
-
-
-            <div class="character-display">
-
-                <strong id="descriptionCharacters">0</strong>
-                <span>characters</span>
-
-            </div>
-
-
-            <div id="descriptionStatus" class="status neutral">
-                Enter a description to check it.
-            </div>
-
-
-            <div class="google-preview">
-
-                <p class="preview-label">
-                    Search Preview
-                </p>
-
-                <div class="google-result">
-
-                    <div class="preview-title">
-                        Your Website Title
-                    </div>
-
-                    <div class="preview-url">
-                        https://example.com/
-                    </div>
-
-                    <div
-                        id="previewDescription"
-                        class="preview-description"
-                    >
-                        Your meta description preview will appear here.
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ================================= -->
-    <!-- SLUG GENERATOR -->
-    <!-- ================================= -->
-
-    <section id="slugTool" class="tool-section">
-
-        <div class="tool-card">
-
-            <h2>SEO Slug Generator</h2>
-
-            <p class="tool-description">
-                Convert your article title into a clean SEO-friendly URL slug.
-            </p>
-
-            <label for="slugInput">
-                Article Title
-            </label>
-
-            <input
-                type="text"
-                id="slugInput"
-                placeholder="Example: AI Chatbot Development: Complete Guide"
-                oninput="generateSlug()"
-            >
-
-
-            <label for="slugOutput">
-                SEO Slug
-            </label>
-
-            <div class="copy-row">
-
-                <input
-                    type="text"
-                    id="slugOutput"
-                    readonly
-                    placeholder="your-seo-slug"
-                >
-
-                <button
-                    class="copy-button"
-                    onclick="copySlug()"
-                >
-                    Copy
-                </button>
-
-            </div>
-
-
-            <div id="copyMessage" class="copy-message"></div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ================================= -->
-    <!-- COMING SOON -->
-    <!-- ================================= -->
-
-    <section class="coming-soon">
-
-        <h2>More SEO Tools Coming Soon</h2>
-
-        <section class="coming-soon">
-
-    <h2>More SEO Tools Coming Soon</h2>
-
-    <p class="coming-description">
-        We're adding more powerful SEO tools to help you analyze,
-        optimize and improve your website.
-    </p>
-
-    <div class="coming-grid">
-
-        <div class="coming-card">
-            <span class="coming-icon">🤖</span>
-            <h3>Robots.txt Generator</h3>
-            <p>Create a robots.txt file for your website.</p>
-            <span class="coming-label">Coming Soon</span>
-        </div>
-
-
-        <div class="coming-card">
-            <span class="coming-icon">🗺️</span>
-            <h3>XML Sitemap Generator</h3>
-            <p>Generate an SEO-friendly XML sitemap.</p>
-            <span class="coming-label">Coming Soon</span>
-        </div>
-
-
-        <div class="coming-card">
-            <span class="coming-icon">🏷️</span>
-            <h3>Schema Markup Generator</h3>
-            <p>Create structured data markup for your pages.</p>
-            <span class="coming-label">Coming Soon</span>
-        </div>
-
-
-        <div class="coming-card">
-            <span class="coming-icon">🔗</span>
-            <h3>Canonical Generator</h3>
-            <p>Generate canonical tags for your URLs.</p>
-            <span class="coming-label">Coming Soon</span>
-        </div>
-
-
-        <div class="coming-card">
-            <span class="coming-icon">🌍</span>
-            <h3>Hreflang Generator</h3>
-            <p>Create hreflang tags for multilingual websites.</p>
-            <span class="coming-label">Coming Soon</span>
-        </div>
-
-
-        <div class="coming-card">
-            <span class="coming-icon">📈</span>
-            <h3>UTM Builder</h3>
-            <p>Create campaign URLs with UTM parameters.</p>
-            <span class="coming-label">Coming Soon</span>
-        </div>
-
-
-        <div class="coming-card">
-            <span class="coming-icon">📊</span>
-            <h3>DA / PA Checker</h3>
-            <p>Check Domain Authority and Page Authority.</p>
-            <span class="coming-label">Coming Soon</span>
-        </div>
-
-
-        <div class="coming-card">
-            <span class="coming-icon">⚡</span>
-            <h3>PageSpeed Checker</h3>
-            <p>Analyze website performance and speed.</p>
-            <span class="coming-label">Coming Soon</span>
-        </div>
-
-    </div>
-
-</section>
-
-</main>
-
-
-<footer>
-
-    <div class="container">
-
-        <p>
-            © 2026 SEO Toolkit. Free SEO tools.
-        </p>
-
-    </div>
-
-</footer>
-
-
-<script src="script.js"></script>
-
-</body>
-</html>
+/* =========================================
+   COMING SOON TOOLS
+========================================= */
+
+.coming-soon {
+    background: white;
+    padding: 35px;
+    border-radius: 14px;
+    margin: 30px 0;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+}
+
+.coming-soon h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.coming-description {
+    text-align: center;
+    color: #6b7280;
+    margin-bottom: 28px;
+}
+
+.coming-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.coming-card {
+    position: relative;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 22px;
+    transition: 0.2s;
+}
+
+.coming-card:hover {
+    transform: translateY(-3px);
+    border-color: #93c5fd;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.coming-icon {
+    display: block;
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.coming-card h3 {
+    font-size: 17px;
+    margin-bottom: 8px;
+}
+
+.coming-card p {
+    color: #6b7280;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.coming-label {
+    display: inline-block;
+    background: #e0e7ff;
+    color: #3730a3;
+    padding: 5px 9px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+    .coming-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .coming-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .coming-soon {
+        padding: 22px;
+    }
+
+}
